@@ -3,6 +3,7 @@ import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { useRouter } from 'next/router';
 import { Member } from '../../types/member/member';
 import { Stack } from '@mui/material';
+import { getImageUrl } from '../../config';
 
 interface TopTaskerProps {
 	tasker: Member;
@@ -12,7 +13,7 @@ const TopTaskerCard = (props: TopTaskerProps) => {
 	const device = useDeviceDetect();
 	const router = useRouter();
 	const taskerImage = tasker?.memberImage
-		? `${process.env.REACT_APP_API_URL}/${tasker?.memberImage}`
+		? getImageUrl(tasker?.memberImage)
 		: '/img/profile/defaultUser.svg';
 
 	/** HANDLERS **/

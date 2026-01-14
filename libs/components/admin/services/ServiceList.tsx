@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import { Stack } from '@mui/material';
-import { REACT_APP_API_URL } from '../../../config';
+import { REACT_APP_API_URL, getImageUrl } from '../../../config';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Typography from '@mui/material/Typography';
 import { Service } from '../../../types/service/service';
@@ -143,8 +143,8 @@ export const ServicePanelList = (props: ServicePanelListType) => {
 
 						{services.length !== 0 &&
 							services.map((service: Service, index: number) => {
-								const serviceImage = `${REACT_APP_API_URL}/${service?.serviceImages[0]}`;
-								const memberImage = `${REACT_APP_API_URL}/${service?.memberData?.memberImage}`;
+								const serviceImage = getImageUrl(service?.serviceImages[0]);
+								const memberImage = getImageUrl(service?.memberData?.memberImage);
 								console.log('service.memberData?.memberNick', service.memberData?.memberNick); // Debugging line
 								console.log('service', service);
 								return (

@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { Service } from '../../types/service/service';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import { REACT_APP_API_URL, topServiceRank } from '../../config';
+import { REACT_APP_API_URL, topServiceRank, getImageUrl } from '../../config';
 import { useRouter } from 'next/router';
 import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
@@ -32,7 +32,7 @@ const PopularServiceCard = (props: PopularServiceCardProps) => {
 				<Box
 					component={'div'}
 					className={'card-img'}
-					style={{ backgroundImage: `url(${REACT_APP_API_URL}/${service?.serviceImages[0]})` }}
+					style={{ backgroundImage: `url(${getImageUrl(service?.serviceImages[0])})` }}
 					onClick={() => {
 						pushDetailHandler(service?._id); // push to detail page
 					}}
@@ -82,7 +82,7 @@ const PopularServiceCard = (props: PopularServiceCardProps) => {
 				<Box
 					component={'div'}
 					className={'card-img'}
-					style={{ backgroundImage: `url(${REACT_APP_API_URL}/${service?.serviceImages[0]})` }}
+					style={{ backgroundImage: `url(${getImageUrl(service?.serviceImages[0])})` }}
 					onClick={() => {
 						pushDetailHandler(service?._id); // push to detail page
 					}}

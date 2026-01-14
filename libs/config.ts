@@ -55,3 +55,21 @@ export function convertToObjectId(idString: string): mongoose.Types.ObjectId {
 		throw new Error('Invalid ObjectId string.');
 	}
 }
+
+/**
+ * Get the full image URL.
+ * Handles both GCS URLs (https://storage.googleapis.com/...) and legacy relative paths.
+ * @param imagePath - The image path from the database
+ * @returns Full URL to the image
+ */
+export function getImageUrl(imagePath: string | undefined | null): string {
+	if (!imagePath) return '';
+
+	// If already a full URL (GCS or any http/https URL), return as-is
+	if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+		return imagePath;
+	}
+
+	// Legacy: relative path - prepend API URL
+	return `${REACT_APP_API_URL}/${imagePath}`;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { REACT_APP_API_URL, topServiceRank } from '../../config';
+import { REACT_APP_API_URL, topServiceRank, getImageUrl } from '../../config';
 import { Stack, Box, Divider, Typography } from '@mui/material';
 import { useReactiveVar } from '@apollo/client';
 import { formatterStr } from '../../utils';
@@ -41,7 +41,7 @@ const ServiceBigCard = (props: ServiceBigCardProps) => {
 				<Box
 					component={'div'}
 					className={'card-img'}
-					style={{ backgroundImage: `url(${REACT_APP_API_URL}/${service?.serviceImages?.[0]})` }}
+					style={{ backgroundImage: `url(${getImageUrl(service?.serviceImages?.[0])})` }}
 				>
 					{service && service?.serviceRank >= topServiceRank && (
 						<div className={'status'}>

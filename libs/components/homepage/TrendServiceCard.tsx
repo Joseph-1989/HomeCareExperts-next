@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stack, Box, Divider, Typography } from '@mui/material';
 import { Service } from '../../types/service/service';
-import { REACT_APP_API_URL } from '../../config';
+import { REACT_APP_API_URL, getImageUrl } from '../../config';
 import { useRouter } from 'next/router';
 import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
@@ -32,7 +32,7 @@ const TrendServiceCard = (props: TrendServiceCardProps) => {
 			<Box
 				component={'div'}
 				className={'card-img'}
-				style={{ backgroundImage: `url(${REACT_APP_API_URL}/${service?.serviceImages[0]})` }}
+				style={{ backgroundImage: `url(${getImageUrl(service?.serviceImages[0])})` }}
 				onClick={() => pushDetailHandler(service?._id)}
 			>
 				<div>${service.servicePrice}</div>

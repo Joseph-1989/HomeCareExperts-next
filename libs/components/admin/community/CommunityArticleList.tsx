@@ -8,7 +8,7 @@ import Moment from 'react-moment';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Typography from '@mui/material/Typography';
 import { BoardArticle } from '../../../types/board-article/board-article';
-import { REACT_APP_API_URL } from '../../../config';
+import { REACT_APP_API_URL, getImageUrl } from '../../../config';
 import { BoardArticleStatus } from '../../../enums/board-article.enum';
 import {
 	Box,
@@ -151,7 +151,7 @@ const CommunityArticleList = (props: CommunityArticleListProps) => {
 
 						{articles.length !== 0 &&
 							articles.map((article: BoardArticle, index: number) => {
-								const memberImage = `${REACT_APP_API_URL}/${article?.memberData?.memberImage}`;
+								const memberImage = getImageUrl(article?.memberData?.memberImage);
 
 								return (
 									<TableRow hover key={article._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>

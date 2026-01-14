@@ -7,6 +7,8 @@ import { useRouter } from 'next/router';
 import { logIn, signUp } from '../../libs/auth';
 import { sweetMixinErrorAlert } from '../../libs/sweetAlert';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { userVar } from '../../apollo/store';
+import { MemberType } from '../../libs/enums/member.enum';
 
 export const getStaticProps = async ({ locale }: any) => ({
 	props: {
@@ -45,8 +47,17 @@ const Join: NextPage = () => {
 		console.warn(input);
 		try {
 			await logIn(input.nick, input.password);
-			await router.push(`${router.query.referrer ?? '/'}`);
+			console.log('Login successful');
+			console.log('userVar:', userVar());
+			if (userVar().memberType === MemberType.ADMIN) {
+				console.log('Redirecting to admin');
+				await router.push('/_admin');
+			} else {
+				console.log('Redirecting to referrer or home');
+				await router.push(`${router.query.referrer ?? '/'}`);
+			}
 		} catch (err: any) {
+			console.error('Login failed:', err);
 			await sweetMixinErrorAlert(err.message);
 		}
 	}, [input]);

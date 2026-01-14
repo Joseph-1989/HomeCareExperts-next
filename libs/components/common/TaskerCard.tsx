@@ -2,7 +2,7 @@ import React from 'react';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { Stack, Box, Typography } from '@mui/material';
 import Link from 'next/link';
-import { REACT_APP_API_URL } from '../../config';
+import { REACT_APP_API_URL, getImageUrl } from '../../config';
 import IconButton from '@mui/material/IconButton';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -20,7 +20,7 @@ const TaskerCard = (props: AgentCardProps) => {
 	const device = useDeviceDetect();
 	const user = useReactiveVar(userVar);
 	const imagePath: string = agent?.memberImage
-		? `${REACT_APP_API_URL}/${agent?.memberImage}`
+		? getImageUrl(agent?.memberImage)
 		: '/img/profile/defaultUser.svg';
 
 	if (device === 'mobile') {

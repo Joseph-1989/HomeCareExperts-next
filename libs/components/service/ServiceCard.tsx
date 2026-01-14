@@ -1,5 +1,5 @@
 import React from 'react';
-import { REACT_APP_API_URL, topServiceRank } from '../../config';
+import { getImageUrl, topServiceRank } from '../../config';
 import { Stack, Typography, Box } from '@mui/material';
 import { useReactiveVar } from '@apollo/client';
 import { formatterStr } from '../../utils';
@@ -30,7 +30,7 @@ const ServiceCard = (props: ServiceCardType) => {
 	const device = useDeviceDetect();
 	const user = useReactiveVar(userVar);
 	const imagePath: string = service?.serviceImages[0]
-		? `${REACT_APP_API_URL}/${service?.serviceImages[0]}`
+		? getImageUrl(service?.serviceImages[0])
 		: '/img/banner/header1.svg';
 
 	if (device === 'mobile') {

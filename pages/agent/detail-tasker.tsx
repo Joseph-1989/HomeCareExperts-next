@@ -5,7 +5,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useMutation, useQuery, useReactiveVar } from '@apollo/client';
 import { CREATE_COMMENT, LIKE_TARGET_PROPERTY, LIKE_TARGET_SERVICE } from '../../apollo/user/mutation';
 import { CommentInput, CommentsInquiry } from '../../libs/types/comment/comment.input';
-import { Messages, REACT_APP_API_URL } from '../../libs/config';
+import { Messages, REACT_APP_API_URL, getImageUrl } from '../../libs/config';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { PropertiesInquiry } from '../../libs/types/property/property.input';
 import { CommentGroup } from '../../libs/enums/comment.enum';
@@ -200,7 +200,7 @@ const TaskerDetail: NextPage = ({ initialInput, initialComment, ...props }: any)
 				<Stack className={'container'}>
 					<Stack className={'agent-info'}>
 						<img
-							src={agent?.memberImage ? `${REACT_APP_API_URL}/${agent?.memberImage}` : '/img/profile/defaultUser.svg'}
+							src={agent?.memberImage ? getImageUrl(agent?.memberImage) : '/img/profile/defaultUser.svg'}
 							alt=""
 						/>
 						<Box component={'div'} className={'info'} onClick={() => redirectToMemberPageHandler(agent?._id as string)}>

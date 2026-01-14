@@ -1,0 +1,17 @@
+node_modules
+.next
+.turbo
+.git
+.gitignore
+README.md
+LICENSE
+*.log
+yarn-error.log
+package-lock.json
+.env
+.env.*
+.env*.local
+.DS_Store
+/coverage
+/out
+/build

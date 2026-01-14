@@ -1,7 +1,7 @@
 import { getJwtToken, logOut, updateUserInfo } from '../auth';
 import React, { useCallback, useEffect } from 'react';
 import { useRouter, withRouter } from 'next/router';
-import { REACT_APP_API_URL } from '../config';
+import { getImageUrl } from '../config';
 import Menu, { MenuProps } from '@mui/material/Menu';
 import { useTranslation } from 'next-i18next';
 import { useReactiveVar } from '@apollo/client';
@@ -222,7 +222,7 @@ const Top = () => {
 									<div className={'login-user'} onClick={(event: any) => setLogoutAnchor(event.currentTarget)}>
 										<img
 											src={
-												user?.memberImage ? `${REACT_APP_API_URL}/${user?.memberImage}` : '/img/profile/defaultUser.svg'
+												user?.memberImage ? getImageUrl(user?.memberImage) : '/img/profile/defaultUser.svg'
 											}
 											alt=""
 										/>

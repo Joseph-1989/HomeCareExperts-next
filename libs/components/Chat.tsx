@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Messages, REACT_APP_API_URL } from '../config';
+import { Messages, getImageUrl } from '../config';
 import { socketVar, userVar } from '../../apollo/store';
 import { Avatar, Box, Stack } from '@mui/material';
 import { sweetErrorAlert } from '../sweetAlert';
@@ -150,7 +150,7 @@ const Chat = () => {
 							{messagesList.map((ele: MessagePayload) => {
 								const { text, memberData } = ele;
 								const memberImage = memberData?.memberImage
-									? `${REACT_APP_API_URL}/${memberData.memberImage}`
+									? getImageUrl(memberData.memberImage)
 									: '/img/profile/defaultUser.svg';
 
 								return memberData?._id === user?._id ? (

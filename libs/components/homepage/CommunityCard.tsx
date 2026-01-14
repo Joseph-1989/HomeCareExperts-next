@@ -4,6 +4,7 @@ import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { Box } from '@mui/material';
 import Moment from 'react-moment';
 import { BoardArticle } from '../../types/board-article/board-article';
+import { getImageUrl } from '../../config';
 
 interface CommunityCardProps {
 	vertical: boolean;
@@ -15,7 +16,7 @@ const CommunityCard = (props: CommunityCardProps) => {
 	const { vertical, article, index } = props;
 	const device = useDeviceDetect();
 	const articleImage = article?.articleImage
-		? `${process.env.REACT_APP_API_URL}/${article?.articleImage}`
+		? getImageUrl(article?.articleImage)
 		: '/img/event.svg';
 
 	if (device === 'mobile') {

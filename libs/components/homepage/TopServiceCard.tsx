@@ -5,7 +5,7 @@ import useDeviceDetect from '../../hooks/useDeviceDetect';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Service } from '../../types/service/service';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import { REACT_APP_API_URL } from '../../config';
+import { REACT_APP_API_URL, getImageUrl } from '../../config';
 import { useRouter } from 'next/router';
 import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
@@ -32,7 +32,7 @@ const TopServiceCard = (props: TopServiceCardProps) => {
 			<Box
 				component={'div'}
 				className={'card-img'}
-				style={{ backgroundImage: `url(${REACT_APP_API_URL}/${service?.serviceImages[0]})` }}
+				style={{ backgroundImage: `url(${getImageUrl(service?.serviceImages[0])})` }}
 				onClick={() => pushDetailHandler(service?._id)}
 			>
 				<div>${service?.servicePrice}</div>

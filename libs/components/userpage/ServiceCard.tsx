@@ -9,6 +9,7 @@ import Moment from 'react-moment';
 import { useRouter } from 'next/router';
 import { Service } from '../../types/service/service';
 import { ServiceStatus } from '../../enums/service.enum';
+import { getImageUrl } from '../../config';
 
 interface ServiceCardProps {
 	service: Service;
@@ -56,7 +57,7 @@ export const ServiceCard = (props: ServiceCardProps) => {
 		return (
 			<Stack className="property-card-box">
 				<Stack className="image-box" onClick={() => pushEditService(service?._id)}>
-					<img src={`${process.env.REACT_APP_API_URL}/${service.serviceImages[0]}`} alt="" />
+					<img src={getImageUrl(service.serviceImages[0])} alt="" />
 				</Stack>
 				<Stack className="information-box" onClick={() => pushServiceDetail(service?._id)}>
 					<Typography className="name">{service.serviceTitle}</Typography>
